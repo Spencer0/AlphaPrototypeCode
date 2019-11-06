@@ -20,14 +20,23 @@ def upload_file(file_name, bucket, object_name=None):
     return True
 
 def main():
+    #Validate user inputs
+    if len(sys.argv) == 1: 
+        print("You need to pass in a more appropriate argument! Exiting.")
+        return False
+        
     file_name = sys.argv[1]
-    if not file_name: return
-    print("the script has the name %s" % (sys.argv[0]))
+    
     if(path.exists(file_name)):
-        upload_file(file_name, "another-bucket-to-watch")
+        return upload_file(file_name, "another-bucket-to-watch")
     else:
         with open(file_name, 'w'): pass
-        upload_file(file_name, "another-bucket-to-watch")
+        return upload_file(file_name, "another-bucket-to-watch")
 
 
-main()
+exit_code = main()
+
+if(exit_code):
+    print("Uploaded probably worked")
+else:
+    print("Upload for sure didn't work")
