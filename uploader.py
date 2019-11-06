@@ -21,6 +21,7 @@ def upload_file(file_name, bucket, object_name=None):
 
 def main():
     file_name = sys.argv[1]
+    if not file_name: return
     print("the script has the name %s" % (sys.argv[0]))
     if(path.exists(file_name)):
         upload_file(file_name, "another-bucket-to-watch")
